@@ -9,6 +9,49 @@ namespace Lab4
 
             // code here
 
+            int negativePosition = 0;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] < 0)
+                {
+                    negativePosition = i;
+                    break
+                }
+            }
+
+            int maxValue = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (maxValue < Math.Max(array[i], array[i+1])
+                    {
+                        maxValue = Math.Max(array[i], array[i+1]);
+                    }
+            }
+
+            int maxPosition = 0;
+            for (int i = 0; i < array.Length; i++)
+                    {
+                        if (array[i] == maxValue)
+                        {
+                            maxPosition = i;
+                            break;
+                        }
+                    }
+
+            int sum = 0;
+
+            if (maxPosition != array.Length - 1)
+                    {
+                        for (int i = maxPosition + 1; i < array.Length; i++)
+                        {
+                            sum += array[i];
+                        }
+                    }
+
+            array[maxPosition] = sum;
+            
+            
             // end
 
         }
@@ -122,4 +165,5 @@ namespace Lab4
             return indexes;
         }
     }
+
 }
