@@ -38,7 +38,7 @@ namespace Lab4
             int maxValue = 0;
             for (int i = 0; i < array.Length; i++)
             {
-                if (maxValue < Math.Max(array[i], array[i+1])
+                if (maxValue < Math.Max(array[i], array[i+1]) )
                     {
                         maxValue = Math.Max(array[i], array[i+1]);
                     }
@@ -273,7 +273,7 @@ namespace Lab4
 			{
 				if (array[i] < averages)
 				{
-					answer[j] = i;
+					indexes[j] = i;
 					j++;
 				}
 			}			      
@@ -292,12 +292,16 @@ namespace Lab4
 			// В метод передается одномерный массив array. Определить длину самой большой непрерывнойупорядоченной (по возрастанию или по убыванию) последовательности. 
 			// Последовательность считается непрерывной, если её элементы равны или их попарная разность одного знака.
 			
-			// 
-			// 
+			// Determine the length of the longest continuous ordered sequence (either increasing or decreasing).
+			// A sequence is considered continuous if its elements are equal, or if the pairwise differences betweem consecutive elements have the same sign
 			
-			
-            
-            
+			for (int i = 0; i < array.Length; i++)
+			{
+				if (array[i] >= array[i+1] && Math.Sign(array[i]) == Math.Sign(array[i+1]) )
+					{
+						count++;
+					}
+			}       
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -313,12 +317,19 @@ namespace Lab4
 			// В метод передается одномерный массив array. Продублировать все элементы с сохранением порядка следования.
 			// Например, передается array = {3, 8, ...}, получить array = {3, 3, 8, 8, ...}.
 			
-			// 
-			// 
-			
-			
-            
-            
+			// Duplicate all array elements preserving their order
+			// Ex.  array = {3, 8, ...}, becomes array = {3, 3, 8, 8, ...}
+
+			int dupeSize = 2 * array.Length;
+			int[] answer = new int[dupeSize];
+
+			int k = 0;
+			for (int i = 0; i < array.Length; i++)
+			{
+				answer[k] = array[i];
+				answer[k+1] = array[i];
+				k += 2;
+			}     
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -334,12 +345,44 @@ namespace Lab4
 			// В метод передается одномерный массив array. Нормировать значения массива, чтобы его элементы принадлежали отрезку [0, 1]. 
 			// Если все элементы массива равны, вернуть null.
 			
-			// 
-			// 
+			// Normalize the elements of an array so that each of them belong to the interval [0, 1]. 
+			// If all elements are the same, return null
+
+			if (array.Length <= 1 || array == null)
+			{
+				return normalized;
+			}
+
+			for (int i = 0; i < array.Length; i++)
+			{
+				if (array[i] == array[i+1])
+					{
+						return normalized;
+					}
+			}
+
+			double[] normalized = new double[array.Length];
 			
-			
-            
-            
+			int xMin = 0;
+			int xMax = 0;
+
+			for (int i = 0; i < array.Length; i++)
+			{
+				if (xMax < Math.Max(array[i], array[i+1]) )
+                    {
+                        xMax = Math.Max(array[i], array[i+1]);
+                    }
+				
+				if (xMin < Math.Min(array[i], array[i+1]) )
+                    {
+                        xMin = Math.Min(array[i], array[i+1]);
+                    }
+			}
+
+			for (int i = 0; i < array.Length; i++)
+			{
+				normalized[i] = (array[i] - xMin) / (xMax - xMin);
+			}
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -355,10 +398,13 @@ namespace Lab4
 			// В метод передается одномерный массив array и число P. Отсортировать массив по возрастанию и найти индекс числа P бинарным поиском в отсортированном массиве. 
 			// Вернуть -1, если число не найдено.
 			
-			// 
-			// 
+			// Sort the array in ascending order and find the index of the number P using binary search in the sorted array
+			// Return -1 if the number is not found
+
 			
-			
+			for (int i = 0; i < array.Length; i++)
+			{
+				
             
             
             
@@ -420,5 +466,6 @@ namespace Lab4
     }
 
 }
+
 
 
