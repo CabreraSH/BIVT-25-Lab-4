@@ -401,10 +401,40 @@ namespace Lab4
 			// Sort the array in ascending order and find the index of the number P using binary search in the sorted array
 			// Return -1 if the number is not found
 
+
+
+			int minNumber = 99999;
+			int maxNumber = -99999;
+			int minIndex = 0;
+			int maxIndex = 0;
 			
 			for (int i = 0; i < array.Length; i++)
 			{
+				if ( minNumber > Math.Min(array[i], array[i+1]) )
+				{
+					minNumber = Math.Min(array[i], array[i+1]);
+					minIndex = i;
+				}
 				
+				if ( maxNumber < Math.Max(array[i], array[i+1]) )
+				{
+					maxNumber = Math.Max(array[i], array[i+1]);
+					maxIndex = i;
+				}
+			}
+
+
+			for (int i = 0; i < array.Length; i++)
+			{
+				//do
+				//{
+					//array[i] = Math.Min(array[i], array[i+1]);
+					//array[i+1] = Math.Max(array[i], array[i+1]);
+				//}
+				//while (array[minIndex] != array[0] || array[maxIndex] != array[array.Length - 1]);
+			}
+			
+			
             
             
             
@@ -466,6 +496,7 @@ namespace Lab4
     }
 
 }
+
 
 
 
