@@ -148,12 +148,43 @@ namespace Lab4
 			// В метод передается одномерный массив array. Удалить минимальный среди положительных элементов массива.
 			// Если в массиве нет положительных элементов, вернуть копию исходного массива.
 			
-			// 
-			// 
+			// Delete the lowest positive number in the array
+			// If the array doesn't have positive numbers, return a copy of the array 
 			
-			
-            
-            
+			int minValue = 99999;
+			int minPosition = 0;
+
+			for (int i = 0; i < array.Length; i++)
+			{
+				if (minValue > 0 && minValue < Math.Min(array[i], array[i+1]) )
+				{
+					minValue = Math.Min(array[i], array[i+1]);
+					minPosition = i;
+				}
+			}
+
+			if (minValue == 99999)
+            {
+                int[] answer = new int[array.Length];
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        answer[i] = array[i];
+                    }
+                return answer;
+            }
+
+			int n2 = array.Length - 1;
+			int[] answer = new int[n2];
+
+			for (int i = 0; i < minPosition; i++)
+			{
+				answer[i] = array[i];
+			}
+
+			for (int i = minPosition + 1; i < n2; i++)
+			{
+				answer[i] = array[i + 1];
+			}
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -168,12 +199,20 @@ namespace Lab4
 			// В метод передается одномерный массив array. Найти среднее значение элементов массива.
 			// Преобразовать элементы исходного массива, вычитая из каждого элемента полученное значение.
 			
-			// 
-			// 
-			
-			
-            
-            
+			// Find the average of the elements of the array
+			// Substract the average from the value of each element
+
+			double average = 0;
+			for (int i = 0; i < array.Length; i++)
+			{
+				average += array[i];
+			}
+			average /= array.Length;
+
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] -= average;
+			}
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -188,12 +227,13 @@ namespace Lab4
 			// В метод передаются одномерные массивы A и B. Вычислить скалярное произведение массивов A и B.
 			// Скалярным произведением называется сумма попарных произведений соответствующих элементов массивов.
 			
-			// 
-			// 
-			
-			
-            
-            
+			// We are given 2 arrays: A and B. Determine the scalar product of A and B.
+			// A Scalar product is defined as the sum of the products of each element.
+
+			for (int i = 0; i < A.Length; i++)
+			{
+				sum += A[i] * B[i];
+			}     
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -208,11 +248,35 @@ namespace Lab4
 // PROBLEM SIX----------------------------------------------------------------------------------------------------------------------------------------------------------------------------START
 			// В метод передается одномерный массив array. Индексы элементов массива, меньших среднего, поместить в новый массив.
 			
-			// 
+			// The indexes of the elements of the array, which are lesser than the average, must be put in a new array
 			
-			
-            
-            
+			double averages = 0;
+			for (int i = 0; i < array.Length; i++)
+			{
+				averages += array[i];
+			}
+			averages /= array.Length;
+
+			int arraySize = 0;
+			for (int i = 0; i < array.Length; i++)
+			{
+				if (array[i] < averages)
+				{
+					arraySize++;
+				}
+			}
+
+			int[] indexes = new int[arraySize];
+
+			int j = 0;
+			for (int i = 0; i < array.Length; i++)
+			{
+				if (array[i] < averages)
+				{
+					answer[j] = i;
+					j++;
+				}
+			}			      
             
 //---------------------------------------------------------------------------------------------------------------------------------------------
             // end
@@ -356,4 +420,5 @@ namespace Lab4
     }
 
 }
+
 
